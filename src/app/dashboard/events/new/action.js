@@ -1,8 +1,8 @@
 "use server";
 
 import { prisma } from "@/utils/prisma";
-import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
+import { uploadFile } from "@/lib/uploadFile";
+import { auth } from "@/lib/auth";
 
 export async function createEventAction(_, formData) {
   const name = formData.get("name");
@@ -10,6 +10,9 @@ export async function createEventAction(_, formData) {
   const city = formData.get("city");
   const isOnline = formData.get("isOnline");
   const location = formData.get("location");
+  const file = formData.get("file"); // .name , .type, .size
+
+  const payload = await auth();
 
   if (!name || !description || !city || !isOnline || !location) {
     return {
@@ -18,7 +21,7 @@ export async function createEventAction(_, formData) {
     };
   }
 
-  await prisma.event.create({
+  const event = await prisma.event.create({
     data: {
       name,
       description,
@@ -26,8 +29,11 @@ export async function createEventAction(_, formData) {
       location,
       isOnline: isOnline === "true",
       authorId: payload.id,
+      image: file.name,
     },
   });
+
+  await uploadFile({ key: file.name, body: file, folder: event.id });
 
   return {
     success: true,

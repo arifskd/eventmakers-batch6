@@ -27,6 +27,7 @@ export default function Page() {
           <option value={true}>The event would be online</option>
           <option value={false}>The event would be offline</option>
         </select>
+        <input name="file" type="file" accept="png" />
         <input name="location" placeholder="Location / Url" />
         <button disabled={pending}>Create event</button>
         {!state?.success && <p>{state?.message}</p>}

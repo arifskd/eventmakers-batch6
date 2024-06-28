@@ -30,6 +30,7 @@ model Event {
   location String
   isOnline Boolean @default(false)
   authorId String
+  image String?
   author User @relation(fields: [authorId], references: [id])
   participants Participant[]
 }
