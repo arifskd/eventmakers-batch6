@@ -20,22 +20,22 @@ export default async function Page({ params }) {
     <div className="m-auto min-h-screen max-w-6xl py-8">
       <section className="space-y-24">
         <Header />
-        <h1 className="text-8xl font-semibold tracking-tighter">
+        <h1 className="text-balance text-8xl font-semibold tracking-tighter text-white">
           {event.name}
         </h1>
 
         <main className="grid grid-cols-2 gap-8">
           <section className="space-y-6 text-balance">
-            <h3 className="whitespace-pre-line text-lg font-normal">
+            <h3 className="whitespace-pre-line text-lg font-normal text-white">
               {event.description}{" "}
             </h3>
-            <div>
+            <div className="text-white">
               <h4>Event Author :</h4>
               <h3>{event.author.name}</h3>
             </div>
             <JoinForm eventId={event.id} />
           </section>
-          <section className="space-y-6">
+          <section className="space-y-6 text-white">
             <h3>Participants</h3>
             <ul>
               {event.participants.map((participant) => {

@@ -1,11 +1,10 @@
-"use server"
+"use server";
 
-import {cookies} from "next/headers"
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-export async function logoutAction(){
+export async function logoutAction() {
+  cookies().delete("token");
 
-    cookies()
-    return {
-        success: true
-    }
+  redirect("/");
 }

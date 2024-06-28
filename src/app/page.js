@@ -24,16 +24,16 @@ export default async function Home() {
             <h1 className="text-8xl font-semibold tracking-tighter">
               Build an event, and invite your folks!
             </h1>
-            <h3 className="text-lg">
+            <h3 className="text-lg text-slate-400">
               Sports ? Webinar ? Speech ? Or even Gabutz ? No Problem!
             </h3>
             <div className="flex justify-center">
-              <button className="rounded-full bg-black px-6 py-2.5 text-lg font-semibold text-white">
+              <button className="rounded-full bg-white px-6 py-2.5 text-lg font-semibold tracking-tight text-black">
                 Start your first event!
               </button>
             </div>
           </section>
-          <section className="grid grid-cols-3 gap-4">
+          <section className="grid grid-cols-3 gap-8">
             {events.map((event) => (
               <EventCard key={event.id} event={event} />
             ))}

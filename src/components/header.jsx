@@ -6,11 +6,13 @@ export const Header = async () => {
   const user = await auth();
 
   return (
-    <header className="flex items-center justify-between rounded-full bg-yellow-300 p-3 shadow-sm">
+    <header className="flex items-center justify-between rounded-full bg-yellow-300 p-3 text-black shadow-lg shadow-yellow-700">
       <Link href="/">
-        <div className="ml-3 text-lg font-bold">Eventmakers.</div>
+        <div className="ml-3 text-lg font-bold tracking-tighter">
+          Eventmakers.
+        </div>
       </Link>
-      <div className="flex items-center gap-4 font-semibold">
+      <div className="flex items-center gap-4 font-semibold tracking-tight">
         <div>Event</div>
         <div>Popular</div>
         {user ? (
@@ -21,10 +23,14 @@ export const Header = async () => {
           </Link>
         ) : (
           <>
-            <div>Login</div>
-            <button className="rounded-full bg-black px-4 py-2 text-white">
-              Get started
-            </button>
+            <Link href="/login">
+              <div>Login</div>
+            </Link>
+            <Link href="/register">
+              <button className="rounded-full bg-black px-4 py-2 text-white">
+                Get started
+              </button>
+            </Link>
           </>
         )}
       </div>

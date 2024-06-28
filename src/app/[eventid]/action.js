@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/utils/prisma";
+import { revalidatePath } from "next/cache";
 
 export async function joinEventAction(_, formData) {
   const name = formData.get("name");
@@ -21,6 +22,8 @@ export async function joinEventAction(_, formData) {
       eventId,
     },
   });
+
+  revalidatePath("/[eventid]", "page");
 
   return {
     success: true,
